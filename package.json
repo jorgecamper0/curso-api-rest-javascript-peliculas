@@ -1,0 +1,19 @@
+{
+  "name": "curso-api-rest-javascript-peliculas",
+  "version": "1.0.0",
+  "description": "curso practico de consumo de api res con javascript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgecamper0/curso-api-rest-javascript-peliculas.git"
+  },
+  "author": "jorgecamper0@hotmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgecamper0/curso-api-rest-javascript-peliculas/issues"
+  },
+  "homepage": "https://github.com/jorgecamper0/curso-api-rest-javascript-peliculas#readme"
+}
