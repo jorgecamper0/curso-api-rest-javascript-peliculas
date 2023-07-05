@@ -1,3 +1,7 @@
+let maxPage;
+let page = 1;
+let infiniteScroll;
+
 searchFormBtn.addEventListener("click", () => {
     searchFormInput.value;
     location.hash = "#search=" + searchFormInput.value;
@@ -13,9 +17,15 @@ arrowBtn.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded",navigator, false);
 window.addEventListener("hashchange",navigator, false);
+window.addEventListener("scroll", infiniteScroll, false);
 
 function navigator() {
 console.log(location);
+
+if(infiniteScroll) {
+    window.removeEventListener("scroll", infiniteScroll, {passive: false});
+    infiniteScroll = undefined;
+}
 
     if(location.hash.startsWith("#trends")) {
         trendsPage();
@@ -27,6 +37,12 @@ console.log(location);
         categoryPage();
     } else {
         homePage();
+    }
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
+    if(infiniteScroll) {
+        window.addEventListener("scroll", infiniteScroll, {passive: false});
     }
 
 
@@ -71,6 +87,7 @@ function trendsPage() {
     movieDetailSection.classList.add("inactive");
 
     getTrendingMovies();
+    infiniteScroll = getPaginatedTrendingMovies;
 };
 
 function searchPage() {
@@ -92,6 +109,8 @@ function searchPage() {
              //["#search", "platzi"]
      const [_,query] = location.hash.split("=");
      getMoviesBySearch(query);
+
+     infiniteScroll = getPaginatedMoviesBySearch(query);
 };
 
 function moviePage() {
@@ -141,4 +160,5 @@ function categoryPage() {
 
 
     getMoviesByCategory(categoryId);
+    infiniteScroll = getPaginatedMoviesByCategory(categoryId);
 };
